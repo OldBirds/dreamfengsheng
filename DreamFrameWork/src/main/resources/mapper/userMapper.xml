@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lee.fengsheng.mappers.UserMapper">
+
+    <select id="findUserAll" resultType="com.lee.fengsheng.model.User">
+        select * from tbl_user;
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO tbl_user (userName, age, sex, phone,password,nick,updateTime)
+         VALUES  (#{userName},#{age},#{sex},#{phone},password(#{password}),#{nick},CURRENT_TIMESTAMP()) ;
+    </insert>
+
+    <insert id="insertToken">
+        INSERT INTO tbl_token (u_id,token,createTime)
+        VALUES  (#{u_id},#{token},CURRENT_TIMESTAMP()) ;
+    </insert>
+
+    <select id="getTokenByUid" resultType="com.lee.fengsheng.model.TokenModel" parameterType="Long">
+        SELECT * FROM tbl_token WHERE u_id=#{u_id}
+    </select>
+
+    <select id="login" resultType="com.lee.fengsheng.model.User" parameterType="String">
+        SELECT u_id,age,sex,phone,userName,nick FROM tbl_user WHERE userName=#{userName} AND password=password(#{password})
+    </select>
+
+</mapper>

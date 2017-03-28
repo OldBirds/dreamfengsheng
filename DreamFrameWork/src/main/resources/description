@@ -1,0 +1,22 @@
+# 创建数据库
+CREATE DATABASE lee CHARACTER SET utf8;
+
+use lee;
+# 建表
+CREATE TABLE tbl_user (
+  u_id        BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  phone       VARCHAR(11)  NOT NULL,
+  age         INT,
+  password    VARCHAR(255) NOT NULL,
+  userName        VARCHAR(255),
+  sex         INT,
+  nick        VARCHAR(40),
+  createdTime DATETIME,
+  updateTime  DATETIME
+);
+
+#建储存token的表，暂用
+CREATE TABLE tbl_token(
+  u_id BIGINT NOT NULL unique,
+  token VARCHAR(255) NOT NULL
+);
